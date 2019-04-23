@@ -16,6 +16,9 @@ from rest_framework.authtoken.models import Token
 #models
 from cride.users.models import User, Profile
 
+#serializers
+from cride.users.serializers.profiles import ProfileModelSerializer
+
 #Utilities
 from datetime import timedelta
 import jwt
@@ -23,11 +26,16 @@ import jwt
 
 class UserModelSerializer(serializers.ModelSerializer):
     """User model serializer"""
+
+    profile = ProfileModelSerializer(read_only=True) #esto es para poder mostrar el valor del profile en el detalle de un usuatio
+
+
+
     class Meta:
         """Meta class"""
         
         model=User
-        fields=('username', 'first_name', 'last_name', 'email', 'phone_number')
+        fields=('username', 'first_name', 'last_name', 'email', 'phone_number', 'profile')
 
 
 class UserLoginSerializer(serializers.Serializer):
