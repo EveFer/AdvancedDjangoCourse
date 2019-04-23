@@ -9,7 +9,7 @@ def import_csv(filename):
                 name=reg['name'], 
                 slug_name=reg['slug_name'], 
                 is_public=reg['is_public'], 
-                verifed=reg['verifed'], 
+                verified=reg['verified'], 
                 is_limited=1, 
                 members_limit=reg['members_limit']) 
                 print(reg['name']) 
@@ -18,6 +18,6 @@ def import_csv(filename):
                 name=reg['name'], 
                 slug_name=reg['slug_name'], 
                 is_public=reg['is_public'], 
-                verifed=reg['verifed'],  
+                verified=reg['verified'],  
                 members_limit=reg['members_limit']) 
                 print(reg['name'])

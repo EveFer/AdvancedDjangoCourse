@@ -1,4 +1,4 @@
-name,slug_name,is_public,verifed,members_limit
+name,slug_name,is_public,verified,members_limit
 "Facultad de Ciencias, UNAM",unam-fciencias,1,1,0
 "Tec de Monterrey, Campos Santa Fé",itesm-csf,1,1,0
 Inventive,inventive,0,1,30
