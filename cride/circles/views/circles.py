@@ -21,6 +21,7 @@ class CircleViewSet(mixins.CreateModelMixin,
     """Circle view set"""
     
     serializer_class = CircleModelSerializer
+    lookup_field = 'slug_name' #define que con este campo se llamara cuando se llama en la url. para obtener la informacion detallada de un circulo
     #permission_classes = (IsAuthenticated,)
     def get_permissions(self):
         """Assing circle admin"""

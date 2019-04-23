@@ -19,7 +19,7 @@ class CircleModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Circle
         fields = (
-            'id', 'name', 'slug_name',
+            'name', 'slug_name',
             'about', 'picture', 'rides_offered',
             'rides_taken', 'verified', 'is_public',
             'is_limited', 'members_limit'
@@ -31,7 +31,7 @@ class CircleModelSerializer(serializers.ModelSerializer):
             'rides_taken'
         )
     
-    def validate(self,data):
+    def validate(self,data): # validar que se encuentren los campos "members_limit" and "is_limit" al momento que se cree
         """Ensure both members_limit and is_limited are present."""
         members_limit = data.get('members_limit', None)
         is_limited = data.get('is_limited', False)
