@@ -1,7 +1,8 @@
 """Users views"""
 
 #Django REST Framework
-from rest_framework import status
+from rest_framework import status, viewsets
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -13,11 +14,15 @@ from cride.users.serializers import (
     UserSignupSerializer
 )
 
-class UserLoginAPIView(APIView):
-    """Users Login API view, Class-base view"""
+class UserViewSet(viewsets.GenericViewSet):
+    """User view set
+    
+    Handle sign up, login and account verification
+    """
 
-    def post(self, request, *args, **kwargs):
-        """Handle HTTP POST request"""
+    @action(detail=False, methods=['post']) #para personalizar viewssets
+    def login(self, request): #el nombre de la funcion sera el que se pondra en la url (localhost:8000/users/login/)
+        """user sign in"""
         serializer = UserLoginSerializer(data=request.data) 
         serializer.is_valid(raise_exception=True)
         user, token = serializer.save()
@@ -27,22 +32,18 @@ class UserLoginAPIView(APIView):
         }
         return Response(data, status=status.HTTP_201_CREATED)
 
-class UserSignupAPIView(APIView):
-    """Users Create API View"""
-
-    def post(self, request, *args, **kwargs):
-        """Handle http post request for create user"""
+    @action(detail=False, methods=['post'])
+    def signup(self, request):
+        """User Sign up"""
         serializer = UserSignupSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         data = UserModelSerializer(user).data
         return Response(data, status=status.HTTP_201_CREATED)
 
-class AccountVerificationAPIView(APIView):
-    """Account verificacion API View"""
-
-    def post(self, request, *args, **kwargs):
-        """Handle http post request for create user"""
+    @action(detail=False, methods=['post'])
+    def verify(self, request):
+        """Account verification"""
         serializer = AccountValidatorSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
