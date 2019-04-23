@@ -84,7 +84,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         return Response(data, status=status.HTTP_200_OK)
 
     @action(detail=True, methods=['put', 'patch'])
-    def profile(self, request, *args, **kwargs):
+    def profile(self, request, *args, **kwargs): #este es para poder modificar le profile
         """Update profile data"""
         user = self.get_object()
         profile = user.profile
