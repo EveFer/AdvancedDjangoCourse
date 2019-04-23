@@ -143,5 +143,5 @@ class AccountValidatorSerializer(serializers.Serializer):
         """Update user's verified status"""
         payload = self.context['payload']
         user = User.objects.get(username=payload['user'])
-        user.isverified = True
+        user.is_verified = True
         user.save()
