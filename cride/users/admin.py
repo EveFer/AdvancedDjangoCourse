@@ -9,7 +9,7 @@ from cride.users.models import User, Profile
 
 class CustomUserAdmin(UserAdmin):
     """User model admin"""
-    list_display=('email', 'username', 'first_name', 'last_name', 'is_staff', 'is_client')
+    list_display=('email', 'username', 'first_name', 'last_name', 'is_staff', 'is_client','is_verified')
     list_filter=('is_client', 'is_staff', 'created', 'modified')
 
 @admin.register(Profile)

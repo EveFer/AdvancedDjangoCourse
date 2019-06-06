@@ -96,7 +96,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        data = UserModelSerializer(user).data
+        data = UserModelSerializer(user).data # por que se utiliza el usermodelserializer, porque se hara se este serializer tenga un campo de profile
         return Response(data)
 
     #esta funcion logrará mostrar los circulos de los cuales es miembro en los detalles de un usuario

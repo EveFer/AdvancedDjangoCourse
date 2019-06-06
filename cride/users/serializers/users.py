@@ -140,9 +140,9 @@ class AccountValidatorSerializer(serializers.Serializer):
         except jwt.ExpiredSignatureError:
             raise serializers.ValidationError('Verification link has expired')
         except jwt.PyJWTError:
-            raise serializers.ValidationError('Invalid token')
+            raise serializers.ValidationError('Invalid token xd')
         if payload['type'] != 'email_confirmation':
-            raise serializers.ValidationError('Invalid token')
+            raise serializers.ValidationError('Invalid token x')
         
         self.context['payload'] = payload
         return data
