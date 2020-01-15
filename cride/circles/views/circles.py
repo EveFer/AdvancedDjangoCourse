@@ -6,9 +6,12 @@ from rest_framework import viewsets, mixins
 from rest_framework.permissions import IsAuthenticated
 from cride.circles.permissions.circles import IsCircleAdmin
 
+#Filters
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+
 #models 
 from cride.circles.models import Circle, Membership
-
 
 #Serializer
 from cride.circles.serializers import CircleModelSerializer
@@ -23,6 +26,14 @@ class CircleViewSet(mixins.CreateModelMixin,
     serializer_class = CircleModelSerializer
     lookup_field = 'slug_name' #define que con este campo se llamara cuando se llama en la url. para obtener la informacion detallada de un circulo
     #permission_classes = (IsAuthenticated,)
+
+    #Filters
+    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
+    search_fields = ('slug_name', 'name')
+    ordering_fields = ('rides_offered', 'rides_taken', 'name', 'created', 'member_limit')
+    ordering  = ('-members__count', '-rides_offered', '-rides_taken') #para ordenar por defecto
+    filter_fields = ('verified', 'is_limited')
+
     def get_permissions(self):
         """Assing circle admin"""
         permissions = [IsAuthenticated]

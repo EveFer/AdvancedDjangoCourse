@@ -12,6 +12,7 @@ django-environ==0.4.5
 
 # Django RestFramework
 djangorestframework==3.9.2
+django-filter==2.0.0
 
 # JWT
 PyJWT==1.7.1
